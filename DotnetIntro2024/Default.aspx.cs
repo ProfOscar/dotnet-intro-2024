@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
+﻿using DotnetIntro2024.App_Code;
+using System;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace DotnetIntro2024
 {
@@ -15,25 +10,14 @@ namespace DotnetIntro2024
         {
             string dbPath = Server.MapPath("App_Data/Registro.mdf");
             string connStr = $"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename={dbPath};Integrated Security=True;Connect Timeout=30";
+            DbTools dbTools = new DbTools(connStr);
             if (!Page.IsPostBack)
             {
                 // se è la prima volta che apro la pagina
                 // lblMessaggio.Text = "Introduci il tuo UserName e Password...";
                 string sql = "SELECT * FROM Studenti";
-                using (SqlConnection sqlConnection = new SqlConnection(connStr))
-                {
-                    using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
-                    {
-                        sqlCommand.CommandType = System.Data.CommandType.Text;
-                        using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand))
-                        {
-                            DataTable dataTable = new DataTable();
-                            sqlDataAdapter.Fill(dataTable);
-                            gridStudenti.DataSource = dataTable;
-                            gridStudenti.DataBind();
-                        }
-                    }
-                }
+                gridStudenti.DataSource = dbTools.GetDataTable(sql);
+                gridStudenti.DataBind();
             }
             else
             {
