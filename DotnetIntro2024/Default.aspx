@@ -8,20 +8,20 @@
     <title></title>
 </head>
 <body>
+    <h3>
+        Introduzione a ASPX (Web Forms)
+    </h3>
     <form id="form1" runat="server">
-        <div>
-            <h3>
-                <% Response.Write("Introduzione a ASPX (Web Forms)"); %>
-            </h3>
+        <!--<div>
             UserName: <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
             <br />
             Password: <input id="txtPassword" />
             <br />
             <asp:Button ID="btnInvia" runat="server" Text="INVIA" />
             <br />
-
-        </div>
-        <asp:Label runat="server" Text="Label" ID="lblMessaggio"></asp:Label>
+            <asp:Label runat="server" Text="Label" ID="lblMessaggio"></asp:Label>
+        </div>-->
+        <asp:GridView ID="gridStudenti" runat="server"></asp:GridView>
     </form>
 </body>
 </html>
