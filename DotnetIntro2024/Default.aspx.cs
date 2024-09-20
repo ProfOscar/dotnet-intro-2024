@@ -15,7 +15,8 @@ namespace DotnetIntro2024
             {
                 // se è la prima volta che apro la pagina
                 // lblMessaggio.Text = "Introduci il tuo UserName e Password...";
-                string sql = "SELECT * FROM Studenti";
+                string sql = @"SELECT Cognome, Nome, Classe, AnnoNascita, Genere FROM Studenti, Classi
+                                WHERE Studenti.Id_Classe = Classi.Id";
                 gridStudenti.DataSource = dbTools.GetDataTable(sql);
                 gridStudenti.DataBind();
             }
