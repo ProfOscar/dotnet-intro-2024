@@ -51,6 +51,15 @@ namespace DotnetIntro2024
         protected global::System.Web.UI.WebControls.Label lblMessaggio;
 
         /// <summary>
+        /// Controllo cmbClasse.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmbClasse;
+
+        /// <summary>
         /// Controllo gridStudenti.
         /// </summary>
         /// <remarks>

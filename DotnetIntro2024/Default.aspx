@@ -21,6 +21,10 @@
             <br />
             <asp:Label runat="server" Text="Label" ID="lblMessaggio"></asp:Label>
         </div>-->
+        <h5>
+            Filtra per classe:
+            <asp:DropDownList ID="cmbClasse" runat="server" OnSelectedIndexChanged="cmbClasse_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+        </h5>
         <asp:GridView ID="gridStudenti" runat="server"></asp:GridView>
     </form>
 </body>
