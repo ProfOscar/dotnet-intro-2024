@@ -60,6 +60,33 @@ namespace DotnetIntro2024
         protected global::System.Web.UI.WebControls.DropDownList cmbClasse;
 
         /// <summary>
+        /// Controllo rbMale.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbMale;
+
+        /// <summary>
+        /// Controllo rbFemale.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbFemale;
+
+        /// <summary>
+        /// Controllo rbAll.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbAll;
+
+        /// <summary>
         /// Controllo gridStudenti.
         /// </summary>
         /// <remarks>

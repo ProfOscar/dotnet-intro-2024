@@ -1,6 +1,7 @@
 ﻿using DotnetIntro2024.App_Code;
 using System;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace DotnetIntro2024
 {
@@ -43,15 +44,31 @@ namespace DotnetIntro2024
                                 WHERE Studenti.Id_Classe = Classi.Id";
         }
 
-        protected void cmbClasse_SelectedIndexChanged(object sender, EventArgs e)
+        private void showFilteredStudents(int idClasse, string gender)
         {
             string sql = getBaseSelectAllStudents();
-            if (cmbClasse.SelectedIndex > 0)
+            if (idClasse > 0)
             {
                 sql += " AND Classi.ID=" + cmbClasse.SelectedValue;
             }
+            if (gender != "ALL")
+            {
+                sql += $" AND Genere='{gender}'";
+            }
             gridStudenti.DataSource = dbTools.GetDataTable(sql);
             gridStudenti.DataBind();
+        }
+
+        protected void cmbClasse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string gender = rbFemale.Checked ? "F" : rbMale.Checked ? "M" : "ALL";
+            showFilteredStudents(cmbClasse.SelectedIndex, gender);
+        }
+
+        protected void rbGender_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rb = (RadioButton)sender;
+            showFilteredStudents(cmbClasse.SelectedIndex, rb.Text);
         }
     }
 }

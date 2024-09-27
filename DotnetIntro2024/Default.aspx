@@ -25,6 +25,12 @@
             Filtra per classe:
             <asp:DropDownList ID="cmbClasse" runat="server" OnSelectedIndexChanged="cmbClasse_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
         </h5>
+        <h5>
+            Filtra per genere:
+            <asp:RadioButton ID="rbMale" runat="server" Text="M" GroupName="gender" OnCheckedChanged="rbGender_CheckedChanged" AutoPostBack="true" />
+            <asp:RadioButton ID="rbFemale" runat="server" Text="F" GroupName="gender" OnCheckedChanged="rbGender_CheckedChanged" AutoPostBack="true" />
+            <asp:RadioButton ID="rbAll" runat="server" Text="ALL" GroupName="gender" OnCheckedChanged="rbGender_CheckedChanged" AutoPostBack="true" Checked="true"/>
+        </h5>
         <asp:GridView ID="gridStudenti" runat="server"></asp:GridView>
     </form>
 </body>
