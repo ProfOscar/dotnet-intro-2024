@@ -31,6 +31,12 @@
             <asp:RadioButton ID="rbFemale" runat="server" Text="F" GroupName="gender" OnCheckedChanged="rbGender_CheckedChanged" AutoPostBack="true" />
             <asp:RadioButton ID="rbAll" runat="server" Text="ALL" GroupName="gender" OnCheckedChanged="rbGender_CheckedChanged" AutoPostBack="true" Checked="true"/>
         </h5>
+        <h5>
+            Filtra per cognome:
+            <asp:TextBox ID="txtCognome" runat="server"></asp:TextBox>
+            &nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnCerca" runat="server" Text="Visualizza Dettagli" OnClick="btnCerca_Click" />
+        </h5>
         <asp:GridView ID="gridStudenti" runat="server"></asp:GridView>
     </form>
 </body>

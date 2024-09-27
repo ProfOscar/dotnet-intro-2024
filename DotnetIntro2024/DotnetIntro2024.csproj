@@ -74,6 +74,7 @@
       <DependentUpon>Registro.mdf</DependentUpon>
     </Content>
     <Content Include="Default.aspx" />
+    <Content Include="Dettagli.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +85,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dettagli.aspx.cs">
+      <DependentUpon>Dettagli.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dettagli.aspx.designer.cs">
+      <DependentUpon>Dettagli.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

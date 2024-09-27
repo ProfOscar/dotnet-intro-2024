@@ -87,6 +87,24 @@ namespace DotnetIntro2024
         protected global::System.Web.UI.WebControls.RadioButton rbAll;
 
         /// <summary>
+        /// Controllo txtCognome.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCognome;
+
+        /// <summary>
+        /// Controllo btnCerca.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCerca;
+
+        /// <summary>
         /// Controllo gridStudenti.
         /// </summary>
         /// <remarks>

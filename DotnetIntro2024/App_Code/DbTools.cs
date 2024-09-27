@@ -32,7 +32,13 @@ namespace DotnetIntro2024.App_Code
                     }
                 }
             }
-
         }
+
+        public string GetBaseSelectAllStudents()
+        {
+            return @"SELECT Cognome, Nome, Classe, AnnoNascita, Genere FROM Studenti, Classi
+                                WHERE Studenti.Id_Classe = Classi.Id";
+        }
+
     }
 }

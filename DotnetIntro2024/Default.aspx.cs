@@ -27,7 +27,7 @@ namespace DotnetIntro2024
                 cmbClasse.Items.Insert(0, "- TUTTE -");
 
                 // Riempio la griglia
-                string sql = getBaseSelectAllStudents();
+                string sql = dbTools.GetBaseSelectAllStudents();
                 gridStudenti.DataSource = dbTools.GetDataTable(sql);
                 gridStudenti.DataBind();
             }
@@ -38,15 +38,9 @@ namespace DotnetIntro2024
             }
         }
 
-        private string getBaseSelectAllStudents()
-        {
-            return @"SELECT Cognome, Nome, Classe, AnnoNascita, Genere FROM Studenti, Classi
-                                WHERE Studenti.Id_Classe = Classi.Id";
-        }
-
         private void showFilteredStudents(int idClasse, string gender)
         {
-            string sql = getBaseSelectAllStudents();
+            string sql = dbTools.GetBaseSelectAllStudents();
             if (idClasse > 0)
             {
                 sql += " AND Classi.ID=" + cmbClasse.SelectedValue;
@@ -69,6 +63,14 @@ namespace DotnetIntro2024
         {
             RadioButton rb = (RadioButton)sender;
             showFilteredStudents(cmbClasse.SelectedIndex, rb.Text);
+        }
+
+        protected void btnCerca_Click(object sender, EventArgs e)
+        {
+            if (txtCognome.Text.Length > 0)
+            {
+                Response.Redirect("Dettagli.aspx?cognome=" + txtCognome.Text);
+            }
         }
     }
 }
