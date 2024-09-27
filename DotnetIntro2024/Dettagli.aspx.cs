@@ -11,6 +11,8 @@ namespace DotnetIntro2024
 {
     public partial class Dettagli : System.Web.UI.Page
     {
+        int index = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             string dbPath = Server.MapPath("App_Data/Registro.mdf");
@@ -24,11 +26,13 @@ namespace DotnetIntro2024
                 DataTable table = dbTools.GetDataTable(sql);
                 if (table.Rows.Count > 0)
                 {
-                    lblNome.Text = table.Rows[0]["Nome"].ToString();
-                    lblCognome.Text = table.Rows[0]["Cognome"].ToString();
-                    lblClasse.Text = table.Rows[0]["Classe"].ToString();
-                    lblGenere.Text = table.Rows[0]["Genere"].ToString();
-                    lblAnnoNascita.Text = table.Rows[0]["AnnoNascita"].ToString();
+                    DataRow row = table.Rows[index];
+                    lblNome.Text = row["Nome"].ToString();
+                    lblCognome.Text = row["Cognome"].ToString();
+                    lblClasse.Text = row["Classe"].ToString();
+                    lblGenere.Text = row["Genere"].ToString();
+                    lblAnnoNascita.Text = row["AnnoNascita"].ToString();
+                    if (table.Rows.Count > 1) pnlPrevNext.Visible = true;
                 }
                 else
                 {
@@ -36,11 +40,26 @@ namespace DotnetIntro2024
                     pnlNonTrovato.Visible = true;
                 }
             }
+            else
+            {
+                if(ViewState["index"] != null) index = (int)ViewState["index"];
+            }
         }
 
         protected void btnHome_Click(object sender, EventArgs e)
         {
             Response.Redirect("Default.aspx");
+        }
+
+        protected void btnPrev_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnNext_Click(object sender, EventArgs e)
+        {
+            index++;
+            ViewState["index"] = index;
         }
     }
 }
