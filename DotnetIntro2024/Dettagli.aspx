@@ -9,6 +9,9 @@
 </head>
 <body>
     <h1>Dettagli Studente</h1>
+
+    <p>UTENTE ONLINE DALLE: <asp:Label ID="lblConnectionTime" runat="server"></asp:Label></p>
+
     <form id="form1" runat="server">
         <asp:Panel ID="pnlDatiStudente" runat="server" Visible="true">
             Nome: <asp:Label ID="lblNome" runat="server" Text=""></asp:Label>

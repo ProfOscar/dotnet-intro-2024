@@ -11,6 +11,11 @@
     <h3>
         Introduzione a ASPX (Web Forms)
     </h3>
+
+    <p>USER AGENT: <asp:Label ID="lblUserAgent" runat="server"></asp:Label></p>
+    <p>CONTATORE VISITE: <asp:Label ID="lblCounter" runat="server"></asp:Label></p>
+    <p>UTENTE ONLINE DALLE: <asp:Label ID="lblConnectionTime" runat="server"></asp:Label></p>
+
     <form id="form1" runat="server">
         <!--<div>
             UserName: <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>

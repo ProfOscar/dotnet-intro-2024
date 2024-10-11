@@ -15,6 +15,15 @@ namespace DotnetIntro2024
     {
 
         /// <summary>
+        /// Controllo lblConnectionTime.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblConnectionTime;
+
+        /// <summary>
         /// Controllo form1.
         /// </summary>
         /// <remarks>

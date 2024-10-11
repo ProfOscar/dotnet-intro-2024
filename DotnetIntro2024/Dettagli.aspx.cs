@@ -2,7 +2,6 @@
 using System;
 using System.Data;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace DotnetIntro2024
 {
@@ -16,6 +15,19 @@ namespace DotnetIntro2024
             string dbPath = Server.MapPath("App_Data/Registro.mdf");
             string connStr = $"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename={dbPath};Integrated Security=True;Connect Timeout=30";
             DbTools dbTools = new DbTools(connStr);
+
+            // Gestisco la data e ora di connessione
+            if (Session["OraConnessione"] == null)
+            {
+                string oraConnessione = DateTime.Now.ToLongTimeString();
+                lblConnectionTime.Text = oraConnessione;
+                Session["OraConnessione"] = oraConnessione;
+            }
+            else
+            {
+                lblConnectionTime.Text = Session["OraConnessione"].ToString();
+            }
+
             if (!Page.IsPostBack)
             {
                 string cogn = Request.QueryString["Cognome"];

@@ -14,6 +14,29 @@ namespace DotnetIntro2024
             string dbPath = Server.MapPath("App_Data/Registro.mdf");
             string connStr = $"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename={dbPath};Integrated Security=True;Connect Timeout=30";
             dbTools = new DbTools(connStr);
+
+            // Visualizzo lo UserAgent
+            lblUserAgent.Text = Request.ServerVariables["HTTP_USER_AGENT"];
+
+            // Gestisco il contatore visite
+            int count = Application["Contatore"] == null ? 0 : (int)Application["Contatore"];
+            count++; lblCounter.Text = count.ToString();
+            Application.Lock();
+            Application["Contatore"] = count;
+            Application.UnLock();
+
+            // Gestisco la data e ora di connessione
+            if (Session["OraConnessione"] == null)
+            {
+                string oraConnessione = DateTime.Now.ToLongTimeString();
+                lblConnectionTime.Text = oraConnessione;
+                Session["OraConnessione"] = oraConnessione;
+            }
+            else
+            {
+                lblConnectionTime.Text = Session["OraConnessione"].ToString();
+            }
+
             if (!Page.IsPostBack)
             {
                 // se è la prima volta che apro la pagina
