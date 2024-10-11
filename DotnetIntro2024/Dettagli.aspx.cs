@@ -1,9 +1,6 @@
 ﻿using DotnetIntro2024.App_Code;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -11,6 +8,9 @@ namespace DotnetIntro2024
 {
     public partial class Dettagli : System.Web.UI.Page
     {
+        DataTable table;
+        int index = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             string dbPath = Server.MapPath("App_Data/Registro.mdf");
@@ -21,26 +21,54 @@ namespace DotnetIntro2024
                 string cogn = Request.QueryString["Cognome"];
                 string sql = dbTools.GetBaseSelectAllStudents();
                 sql += $" AND Cognome='{cogn}'";
-                DataTable table = dbTools.GetDataTable(sql);
+                table = dbTools.GetDataTable(sql);
                 if (table.Rows.Count > 0)
                 {
-                    lblNome.Text = table.Rows[0]["Nome"].ToString();
-                    lblCognome.Text = table.Rows[0]["Cognome"].ToString();
-                    lblClasse.Text = table.Rows[0]["Classe"].ToString();
-                    lblGenere.Text = table.Rows[0]["Genere"].ToString();
-                    lblAnnoNascita.Text = table.Rows[0]["AnnoNascita"].ToString();
+                    AssignData();
+                    if (table.Rows.Count > 1) pnlPrevNext.Visible = true;
                 }
                 else
                 {
                     pnlDatiStudente.Visible = false;
                     pnlNonTrovato.Visible = true;
                 }
+                ViewState["StudentTable"] = table;
+            }
+            else
+            {
+                if (ViewState["StudentTable"] != null) table = (DataTable)ViewState["StudentTable"];
+                if (ViewState["index"] != null) index = (int)ViewState["index"];
             }
         }
 
         protected void btnHome_Click(object sender, EventArgs e)
         {
             Response.Redirect("Default.aspx");
+        }
+
+        protected void btnPrev_Click(object sender, EventArgs e)
+        {
+            index--;
+            AssignData();
+        }
+
+        protected void btnNext_Click(object sender, EventArgs e)
+        {
+            index++;
+            AssignData();
+        }
+
+        private void AssignData()
+        {
+            DataRow row = table.Rows[index];
+            lblNome.Text = row["Nome"].ToString();
+            lblCognome.Text = row["Cognome"].ToString();
+            lblClasse.Text = row["Classe"].ToString();
+            lblGenere.Text = row["Genere"].ToString();
+            lblAnnoNascita.Text = row["AnnoNascita"].ToString();
+            btnPrev.Enabled = index > 0;
+            btnNext.Enabled = (index < table.Rows.Count - 1);
+            ViewState["index"] = index;
         }
     }
 }
