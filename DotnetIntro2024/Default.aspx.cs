@@ -20,10 +20,14 @@ namespace DotnetIntro2024
 
             // Gestisco il contatore visite
             int count = Application["Contatore"] == null ? 0 : (int)Application["Contatore"];
-            count++; lblCounter.Text = count.ToString();
-            Application.Lock();
-            Application["Contatore"] = count;
-            Application.UnLock();
+            if (Session["OraConnessione"] == null)  // per evitare di incrementare quando torno da altre pagine
+            {
+                count++;
+                Application.Lock();
+                Application["Contatore"] = count;
+                Application.UnLock();
+            }
+            lblCounter.Text = count.ToString();
 
             // Gestisco la data e ora di connessione
             if (Session["OraConnessione"] == null)
