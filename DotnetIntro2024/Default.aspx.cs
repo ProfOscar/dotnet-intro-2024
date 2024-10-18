@@ -1,5 +1,7 @@
 ﻿using DotnetIntro2024.App_Code;
 using System;
+using System.Net;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -53,10 +55,20 @@ namespace DotnetIntro2024
                 cmbClasse.DataBind();
                 cmbClasse.Items.Insert(0, "- TUTTE -");
 
+                // Cerco il cookie filteredClass
+                 HttpCookie filteredClassCookie = Request.Cookies["filteredClass"];
+
                 // Riempio la griglia
-                string sql = dbTools.GetBaseSelectAllStudents();
-                gridStudenti.DataSource = dbTools.GetDataTable(sql);
-                gridStudenti.DataBind();
+                if (filteredClassCookie == null || filteredClassCookie.Value == "0")
+                {
+                    string sql = dbTools.GetBaseSelectAllStudents();
+                    gridStudenti.DataSource = dbTools.GetDataTable(sql);
+                    gridStudenti.DataBind();
+                }
+                else
+                {
+                    showFilteredStudents(int.Parse(filteredClassCookie.Value), "ALL");
+                }
             }
             else
             {
@@ -65,12 +77,13 @@ namespace DotnetIntro2024
             }
         }
 
-        private void showFilteredStudents(int idClasse, string gender)
+        private void showFilteredStudents(int cmbClasseIndex, string gender)
         {
             string sql = dbTools.GetBaseSelectAllStudents();
-            if (idClasse > 0)
+            if (cmbClasseIndex > 0)
             {
-                sql += " AND Classi.ID=" + cmbClasse.SelectedValue;
+                cmbClasse.SelectedIndex = cmbClasseIndex;
+                sql += " AND Classi.ID=" + cmbClasse.Items[cmbClasseIndex].Value;
             }
             if (gender != "ALL")
             {
@@ -78,6 +91,13 @@ namespace DotnetIntro2024
             }
             gridStudenti.DataSource = dbTools.GetDataTable(sql);
             gridStudenti.DataBind();
+            setFilteredClassCookie(cmbClasseIndex);
+        }
+
+        private void setFilteredClassCookie(int cmbClasseIndex)
+        {
+            Response.Cookies["filteredClass"].Value = cmbClasseIndex.ToString();
+            Response.Cookies["filteredClass"].Expires = DateTime.Today.AddDays(30);
         }
 
         protected void cmbClasse_SelectedIndexChanged(object sender, EventArgs e)
